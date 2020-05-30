@@ -1,0 +1,22 @@
+<div class="mb-3 card">
+  <div class="card-header-tab card-header">
+    <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+      <i class="header-icon lnr-charts icon-gradient bg-happy-green"> </i>
+      Building Summary
+    </div>
+  </div>
+  <div class="no-gutters row" *ngIf="summary">
+    <div class="col-sm-6 col-md-4 col-xl-4" *ngFor="let item of summary | keyvalue">
+      <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+        <div class="icon-wrapper rounded-circle">
+          <div class="icon-wrapper-bg opacity-10 bg-warning"></div>
+          <i class="pe-7s-album text-white opacity-8"></i></div>
+        <div class="widget-chart-content">
+          <div class="widget-subheading">{{ item.key | uppercase }}</div>
+          <div class="widget-numbers">{{ item.value }}</div>
+        </div>
+      </div>
+      <div class="divider m-0 d-md-none d-sm-block"></div>
+    </div>
+  </div>
+</div>
