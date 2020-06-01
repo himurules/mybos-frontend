@@ -5,18 +5,66 @@
       Building Summary
     </div>
   </div>
-  <div class="no-gutters row" *ngIf="summary">
-    <div class="col-sm-6 col-md-4 col-xl-4" *ngFor="let item of summary | keyvalue">
+  <div class="alert alert-danger text-center" [hidden]="!error">
+    {{ error }}
+  </div>
+  <div class="no-gutters row">
+    <div class="col-sm-6 col-md-4 col-xl-4">
       <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
         <div class="icon-wrapper rounded-circle">
           <div class="icon-wrapper-bg opacity-10 bg-warning"></div>
-          <i class="pe-7s-album text-white opacity-8"></i></div>
+          <i class="pe-7s-id text-white opacity-8"></i></div>
         <div class="widget-chart-content">
-          <div class="widget-subheading">{{ item.key | uppercase }}</div>
-          <div class="widget-numbers">{{ item.value }}</div>
+          <div class="widget-subheading">RESIDENTS</div>
+          <div class="widget-numbers">{{ summary.residents }}</div>
         </div>
       </div>
       <div class="divider m-0 d-md-none d-sm-block"></div>
+    </div>
+    <div class="col-sm-6 col-md-4 col-xl-4">
+      <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+        <div class="icon-wrapper rounded-circle">
+          <div class="icon-wrapper-bg opacity-9 bg-danger"></div>
+          <i class="pe-7s-wallet text-white"></i></div>
+        <div class="widget-chart-content">
+          <div class="widget-subheading">ASSETS</div>
+          <div class="widget-numbers">{{ summary.assets }}</div>
+        </div>
+      </div>
+      <div class="divider m-0 d-md-none d-sm-block"></div>
+    </div>
+    <div class="col-sm-12 col-md-4 col-xl-4">
+      <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+        <div class="icon-wrapper rounded-circle">
+          <div class="icon-wrapper-bg opacity-9 bg-success"></div>
+          <i class="pe-7s-users text-white"></i></div>
+        <div class="widget-chart-content">
+          <div class="widget-subheading">CONTRACTORS</div>
+          <div class="widget-numbers">{{ summary.contractors }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-4 col-xl-4">
+      <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+        <div class="icon-wrapper rounded-circle">
+          <div class="icon-wrapper-bg opacity-9 bg-info"></div>
+          <i class="pe-7s-ticket text-white"></i></div>
+        <div class="widget-chart-content">
+          <div class="widget-subheading">ACTIVE CASES</div>
+          <div class="widget-numbers">{{ summary.activeCases }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-4 col-xl-4">
+      <div class="card no-shadow rm-border bg-transparent widget-chart text-left">
+        <div class="icon-wrapper rounded-circle">
+          <div class="icon-wrapper-bg opacity-9 bg-dark"></div>
+          <i class="pe-7s-tools text-white"></i></div>
+        <div class="widget-chart-content">
+          <div class="widget-subheading">WORK ORDERS SENT</div>
+          <div class="widget-numbers">{{ summary.workOrders }}</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

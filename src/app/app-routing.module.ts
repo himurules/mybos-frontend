@@ -17,6 +17,7 @@ import {LoginBoxedComponent} from './DemoPages/UserPages/login-boxed/login-boxed
 import {RegisterBoxedComponent} from './DemoPages/UserPages/register-boxed/register-boxed.component';
 import {BeforeLoginService} from './Services/before-login.service';
 import {AfterLoginService} from './Services/after-login.service';
+import {CasesComponent} from './DemoPages/Components/cases/cases.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,7 @@ const routes: Routes = [
         canActivate: [AfterLoginService],
         data: {extraParameter: 'dashboardsMenu'}
       },
+      {path: 'cases', component: CasesComponent, canActivate: [AfterLoginService], data: {extraParameter: 'casesMenu'}},
     ]
   },
   {

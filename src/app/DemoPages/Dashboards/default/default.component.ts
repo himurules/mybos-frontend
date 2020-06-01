@@ -25,7 +25,7 @@ export class DefaultComponent implements OnInit {
 
   public building = [
                       {
-                        id: 9,
+                        id: 1,
                         name: 'Arch',
                         address: '200 George Street',
                         state: 'NSW',

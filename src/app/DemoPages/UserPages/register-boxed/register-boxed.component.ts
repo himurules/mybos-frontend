@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../../../Services/api.service';
 import {TokenService} from '../../../Services/token.service';
 import {Router} from '@angular/router';
+import {AuthService} from "../../../Services/auth.service";
 
 @Component({
   selector: 'app-register-boxed',
@@ -11,6 +12,7 @@ import {Router} from '@angular/router';
 export class RegisterBoxedComponent implements OnInit {
 
   constructor(
+    private auth: AuthService,
     private apiService: ApiService,
     private tokenService: TokenService,
     private router: Router
@@ -43,7 +45,8 @@ export class RegisterBoxedComponent implements OnInit {
   }
 
   handleResponse(data) {
-    this.tokenService.handle(data.access_token);
+    this.tokenService.handle(data);
+    this.auth.changeAuthStatus(true);
     this.router.navigate(['/']);
   }
 

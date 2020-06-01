@@ -41,6 +41,7 @@
                   </div>
                 </ng-template>
               </ngb-panel>
+              <!--
               <ngb-panel id="pagesMenu">
                 <ng-template ngbPanelHeader>
                   <button ngbPanelToggle class="vsm-link">
@@ -68,8 +69,8 @@
                   </div>
                 </ng-template>
               </ngb-panel>
-
-              <ngb-panel id="cases">
+              -->
+              <ngb-panel id="casesMenu">
                 <ng-template ngbPanelHeader>
                   <button ngbPanelToggle class="vsm-link">
                     <i class="vsm-icon pe-7s-ticket"></i>
@@ -86,22 +87,22 @@
                         </a>
                       </div>
                       <div class="vsm-item">
-                        <a routerLinkActive="active-item" routerLink="/cases" class="vsm-link"><span
+                        <a routerLinkActive="active-item" routerLink="/cases/current" class="vsm-link"><span
                           class="vsm-title">CURRENT</span>
                         </a>
                       </div>
                       <div class="vsm-item">
-                        <a routerLinkActive="active-item" routerLink="/cases" class="vsm-link"><span
+                        <a routerLinkActive="active-item" routerLink="/cases/overdue" class="vsm-link"><span
                           class="vsm-title">OVERDUE</span>
                         </a>
                       </div>
                       <div class="vsm-item">
-                        <a routerLinkActive="active-item" routerLink="/cases" class="vsm-link"><span
+                        <a routerLinkActive="active-item" routerLink="/cases/trash" class="vsm-link"><span
                           class="vsm-title">TRASH</span>
                         </a>
                       </div>
                       <div class="vsm-item">
-                        <a routerLinkActive="active-item" routerLink="/cases" class="vsm-link"><span
+                        <a routerLinkActive="active-item" routerLink="/cases/starred" class="vsm-link"><span
                           class="vsm-title">STARRED</span>
                         </a>
                       </div>
@@ -110,7 +111,7 @@
                 </ng-template>
               </ngb-panel>
 
-              <ngb-panel id="work-order-sent">
+              <ngb-panel id="workOrderMenu">
                 <ng-template ngbPanelHeader>
                   <button ngbPanelToggle class="vsm-link">
                     <i class="vsm-icon pe-7s-notebook"></i>
@@ -122,17 +123,17 @@
                   <div class="vsm-dropdown">
                     <div class="vsm-list">
                       <div class="vsm-item">
-                        <a routerLinkActive="active-item" routerLink="/cases" class="vsm-link"><span
+                        <a routerLinkActive="active-item" routerLink="/work-order-sent" class="vsm-link"><span
                           class="vsm-title">ALL</span>
                         </a>
                       </div>
                       <div class="vsm-item">
-                        <a routerLinkActive="active-item" routerLink="/cases" class="vsm-link"><span
+                        <a routerLinkActive="active-item" routerLink="/quotes" class="vsm-link"><span
                           class="vsm-title">QUOTES</span>
                         </a>
                       </div>
                       <div class="vsm-item">
-                        <a routerLinkActive="active-item" routerLink="/cases" class="vsm-link"><span
+                        <a routerLinkActive="active-item" routerLink="/cases-summary" class="vsm-link"><span
                           class="vsm-title">CASE SUMMARY</span>
                         </a>
                       </div>
@@ -140,7 +141,7 @@
                   </div>
                 </ng-template>
               </ngb-panel>
-              <ngb-panel id="calender">
+              <ngb-panel id="calenderMenu">
                 <ng-template ngbPanelHeader>
                   <button ngbPanelToggle class="vsm-link">
                     <i class="vsm-icon pe-7s-date"></i>
@@ -149,7 +150,7 @@
                   </button>
                 </ng-template>
               </ngb-panel>
-              <ngb-panel id="maintenance-schedule">
+              <ngb-panel id="maintenanceScheduleMenu">
                 <ng-template ngbPanelHeader>
                   <button ngbPanelToggle class="vsm-link">
                     <i class="vsm-icon pe-7s-note2"></i>

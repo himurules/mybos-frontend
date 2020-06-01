@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgReduxModule} from '@angular-redux/store';
@@ -12,7 +12,7 @@ import {FormsModule} from '@angular/forms';
 
 
 import {CommonModule} from '@angular/common';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
@@ -60,6 +60,14 @@ import {RegisterBoxedComponent} from './DemoPages/UserPages/register-boxed/regis
 
 import {SummaryCardComponent} from './DemoPages/Components/summary-cards/summary-card.component';
 import {PieChartComponent} from './DemoPages/Components/pie-chart/pie-chart.component';
+import {TaskListComponent} from './DemoPages/Components/task-list/task-list.component';
+import {ActivityFeedComponent} from './DemoPages/Components/activity-feed/activity-feed.component';
+import {NotesComponent} from './DemoPages/Components/notes/notes.component';
+import {ActionItemsComponent} from './DemoPages/Components/action-items/action-items.component';
+import {ImportantNumbersComponent} from './DemoPages/Components/important-numbers/important-numbers.component';
+import {TokenInterceptor} from './Services/token.interceptor';
+import {Autherrorhandler} from './Services/autherrorhandler';
+import {CasesComponent} from "./DemoPages/Components/cases/cases.component";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -103,8 +111,13 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     // Components
 
     SummaryCardComponent,
-    PieChartComponent
-
+    PieChartComponent,
+    TaskListComponent,
+    ActivityFeedComponent,
+    NotesComponent,
+    ActionItemsComponent,
+    ImportantNumbersComponent,
+    CasesComponent,
   ],
   imports: [
     BrowserModule,
@@ -134,6 +147,15 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       useValue:
       DEFAULT_PERFECT_SCROLLBAR_CONFIG,
       // DEFAULT_DROPZONE_CONFIG,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: ErrorHandler,
+      useClass: Autherrorhandler
     },
     ConfigActions,
   ],

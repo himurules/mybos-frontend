@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ChartType, ChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+import {ApiService} from '../../../Services/api.service';
+import {element} from "protractor";
 
 @Component({
   selector: 'app-pie-chart',
@@ -24,35 +26,31 @@ export class PieChartComponent implements OnInit {
       },
     }
   };
-  public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'];
-  public pieChartData: number[] = [300, 500, 100];
+  public pieChartLabels: Label[] = [];
+  public pieChartData: number[] = [];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [pluginDataLabels];
   public pieChartColors = [
     {
-       backgroundColor: [this.random_rgba(), this.random_rgba(), this.random_rgba()],
+       backgroundColor: [],
     },
   ];
+  public error = null;
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    const data = {
-      data: [
-        {c: [{v: 'Incident'}, {v: 1}]},
-        {c: [{v: 'Defects'}, {v: 3}]},
-        {c: [{v: 'Fire Service'}, {v: 1}]},
-        {c: [{v: 'Irrigation'}, {v: 2}]},
-        {c: [{v: 'Breaches'}, {v: 1}]},
-        {c: [{v: 'Repair & Maintenance'}, {v: 75}]},
-        {c: [{v: 'Defects - Apartments'}, {v: 1}]},
-        {c: [{v: 'House keeping'}, {v: 1}]}
-      ],
-      ids: [3, 4, 8459, 11320, 11460, 14066, 14484, 19531]
-    };
-    for (const [key, value] of Object.entries(data.data)) {
-       // console.log(`${key}`);
+    this.apiService.casesSummary(1).subscribe(
+      data => this.handleResponse(data),
+    );
+  }
+
+  handleResponse(data) {
+    for (const element of data){
+      this.pieChartLabels.push(element.type);
+      this.pieChartData.push(element.total);
+      this.pieChartColors[0].backgroundColor.push(this.random_rgba());
     }
   }
 
@@ -70,9 +68,17 @@ export class PieChartComponent implements OnInit {
   }
 
   random_rgba() {
+    let num = Math.round(0xffffff * Math.random());
+    let r = num >> 16;
+    let g = num >> 8 & 255;
+    let b = num & 255;
+    return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+    /*
     const o = Math.round;
     const r = Math.random;
     const s = 255;
     return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+
+     */
   }
 }

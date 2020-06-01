@@ -2,23 +2,23 @@ import {Component, OnInit} from '@angular/core';
 import {ApiService} from '../../../Services/api.service';
 
 @Component({
-  selector: 'app-summary-card',
-  templateUrl: './summary-card.component.html',
+  selector: 'app-important-numbers',
+  templateUrl: './important-numbers.component.html',
 })
-export class SummaryCardComponent implements OnInit {
-  public summary = null;
+export class ImportantNumbersComponent implements OnInit {
+  public importantNumbers = [];
   public error = null;
   constructor(private apiService: ApiService) {
   }
 
   ngOnInit() {
-    this.summary = this.apiService.buildingSummary(1).subscribe(
+    this.apiService.importantNumbers().subscribe(
       data => this.handleResponse(data),
     );
   }
 
   handleResponse(data) {
-    this.summary = data;
+    this.importantNumbers = data.data;
   }
 
 }

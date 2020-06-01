@@ -1,0 +1,9 @@
+<div class="main-card mb-3 card">
+  <div class="card-body"><h5 class="card-title">Notes</h5>
+    <ul class="list-group">
+      <li class="justify-content-between list-group-item"  *ngFor="let note of notes">
+        {{ note.note | slice:0:60 }} <span class="badge badge-secondary badge-pill">By {{ note.users.name }} - {{ note.created_at | date}}</span>
+      </li>
+    </ul>
+  </div>
+</div>
