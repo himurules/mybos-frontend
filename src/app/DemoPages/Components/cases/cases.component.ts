@@ -4,6 +4,7 @@ import {ApiService} from '../../../Services/api.service';
 @Component({
   selector: 'app-cases',
   templateUrl: './cases.component.html',
+  styleUrls: ['./cases.component.scss']
 })
 export class CasesComponent implements OnInit {
   heading = 'Cases';
@@ -23,11 +24,19 @@ export class CasesComponent implements OnInit {
   public error = null;
   public size = 0;
   public page = 1;
+  public pageSize = 10;
+  public showSpinner = true;
   constructor(private apiService: ApiService) {
   }
 
   ngOnInit() {
-    this.apiService.casesAll(1).subscribe(
+    this.apiService.casesAll(1, 1).subscribe(
+      data => this.handleResponse(data),
+    );
+  }
+
+  getPageFromService(event){
+    this.apiService.casesAll(1, event).subscribe(
       data => this.handleResponse(data),
     );
   }
@@ -36,6 +45,7 @@ export class CasesComponent implements OnInit {
     this.cases = data.data;
     this.page = data.current_page;
     this.size = data.total;
+    this.showSpinner = false;
   }
 
 }

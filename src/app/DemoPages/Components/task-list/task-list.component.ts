@@ -1,15 +1,19 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ApiService} from '../../../Services/api.service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
+  styleUrls: ['./task-list.component.scss']
 })
 export class TaskListComponent implements OnInit {
   public workOrders = [];
   public error = null;
   public status = ['Rejected', 'Completed', 'In Progress', 'Awaiting Approval'];
-  constructor(private apiService: ApiService) {
+  public showSpinner = true;
+  public chosenStatus = [];
+  constructor(private apiService: ApiService, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -19,10 +23,14 @@ export class TaskListComponent implements OnInit {
   }
 
   handleResponse(data) {
+    this.randomNumber(data.data);
     this.workOrders = data.data;
+    this.showSpinner = false;
   }
 
-  randomNumber() {
-    return  Math.floor(Math.random() * this.status.length);
+  randomNumber(data) {
+    for (const [index, val] of data.entries()) {
+      this.chosenStatus[index] = _.sample(this.status);
+    }
   }
 }

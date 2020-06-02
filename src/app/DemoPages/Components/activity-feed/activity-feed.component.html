@@ -10,7 +10,7 @@
       <div class="p-4">
         <div
           class="vertical-time-simple vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
-          <div class="dot-warning vertical-timeline-element" *ngFor="let feed of activityFeed">
+          <div class="dot-warning vertical-timeline-element {{chosenClass[i]}}" *ngFor="let feed of activityFeed let i = index">
             <div>
               <span class="vertical-timeline-element-icon bounce-in"></span>
               <div class="vertical-timeline-element-content bounce-in">
@@ -26,5 +26,16 @@
     <button class="btn-shadow btn-wide btn-pill btn btn-focus">
       View All Feeds
     </button>
+  </div>
+</div>
+<div class="wrapper">
+  <div class="overlay" *ngIf="showSpinner">
+    <div class="spinner-wrapper">
+      <app-spinner></app-spinner>
+    </div>
+  </div>
+
+  <div class="loaded-content" [class.blurred]="showSpinner">
+    <ng-content></ng-content>
   </div>
 </div>

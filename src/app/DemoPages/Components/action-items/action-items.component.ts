@@ -8,6 +8,7 @@ import {ApiService} from '../../../Services/api.service';
 export class ActionItemsComponent implements OnInit {
   public actionItems = null;
   public error = null;
+  public showSpinner = true;
   constructor(private apiService: ApiService) {
   }
 
@@ -19,6 +20,7 @@ export class ActionItemsComponent implements OnInit {
 
   handleResponse(data) {
     this.actionItems = data;
+    this.showSpinner = false;
   }
 
 }

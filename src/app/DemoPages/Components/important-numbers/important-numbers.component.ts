@@ -8,6 +8,7 @@ import {ApiService} from '../../../Services/api.service';
 export class ImportantNumbersComponent implements OnInit {
   public importantNumbers = [];
   public error = null;
+  public showSpinner = true;
   constructor(private apiService: ApiService) {
   }
 
@@ -19,6 +20,7 @@ export class ImportantNumbersComponent implements OnInit {
 
   handleResponse(data) {
     this.importantNumbers = data.data;
+    this.showSpinner = false;
   }
 
 }

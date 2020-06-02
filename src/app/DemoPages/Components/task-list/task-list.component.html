@@ -28,7 +28,7 @@
         {{ error }}
       </div>
       <ul class="todo-list-wrapper list-group list-group-flush" *ngIf="workOrders">
-        <li class="list-group-item"  *ngFor="let workOrder of workOrders">
+        <li class="list-group-item"  *ngFor="let workOrder of workOrders let i = index">
           <div class="todo-indicator bg-warning"></div>
           <div class="widget-content p-0">
             <div class="widget-content-wrapper">
@@ -41,7 +41,7 @@
               <div class="widget-content-left">
 
                 <div class="widget-heading">{{ workOrder.wo_number }}
-                  <div class="badge badge-danger ml-2">{{ status[1] }}</div>
+                  <div class="badge badge-danger ml-2 {{chosenStatus[i] | replaceSpace | lowercase}}">{{ chosenStatus[i] }}</div>
                 </div>
                 <div class="widget-subheading"><i>by {{workOrder.contractors.name}}</i></div>
               </div>
@@ -62,5 +62,16 @@
   <div class="d-block text-right card-footer">
     <button class="mr-2 btn btn-link btn-sm">Cancel</button>
     <button class="btn btn-primary">Add Task</button>
+  </div>
+</div>
+<div class="wrapper">
+  <div class="overlay" *ngIf="showSpinner">
+    <div class="spinner-wrapper">
+      <app-spinner></app-spinner>
+    </div>
+  </div>
+
+  <div class="loaded-content" [class.blurred]="showSpinner">
+    <ng-content></ng-content>
   </div>
 </div>

@@ -14,8 +14,9 @@ export class Autherrorhandler implements ErrorHandler {
       this.tokenService.remove();
       this.auth.changeAuthStatus(false);
       this.router.navigate(['/login']);
+    }else {
+      console.log(error.status);
+      throw error;
     }
-    console.log(error.status);
-    throw error;
   }
 }

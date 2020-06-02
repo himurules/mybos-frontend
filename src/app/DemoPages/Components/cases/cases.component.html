@@ -27,7 +27,7 @@
         <td class="text-center"><a [routerLink]="">{{ case.subject }}</a></td>
         <td class="text-center"><a [routerLink]="">{{ case.type }}</a></td>
         <td class="text-center">
-          <div class="badge badge-pill badge-danger">{{ case.status | titlecase}}</div>
+          <div class="badge badge-pill badge-danger {{case.status | replaceSpace | lowercase}}">{{ case.status | titlecase}}</div>
         </td>
         <td class="text-center">
           {{ case.category }}
@@ -48,4 +48,22 @@
     </table>
   </div>
 </div>
-<ngb-pagination [collectionSize]="size" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
+<div class="d-flex justify-content-center">
+  <ngb-pagination
+    [collectionSize]="size"
+    [(page)]="page"
+    (pageChange)="getPageFromService($event)"
+    [pageSize]="pageSize"
+    aria-label="Default pagination"></ngb-pagination>
+</div>
+<div class="wrapper">
+  <div class="overlay" *ngIf="showSpinner">
+    <div class="spinner-wrapper">
+      <app-spinner></app-spinner>
+    </div>
+  </div>
+
+  <div class="loaded-content" [class.blurred]="showSpinner">
+    <ng-content></ng-content>
+  </div>
+</div>

@@ -8,6 +8,7 @@ import {ApiService} from '../../../Services/api.service';
 export class SummaryCardComponent implements OnInit {
   public summary = null;
   public error = null;
+  public showSpinner = true;
   constructor(private apiService: ApiService) {
   }
 
@@ -19,6 +20,7 @@ export class SummaryCardComponent implements OnInit {
 
   handleResponse(data) {
     this.summary = data;
+    this.showSpinner = false;
   }
 
 }

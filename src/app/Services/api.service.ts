@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  private baseUrl = 'http://127.0.0.1:8000/api';
+  private baseUrl = environment.apiUrl;
 
   register(data) {
     return this.http.post(`${this.baseUrl}/auth/register`, data);
@@ -30,8 +31,9 @@ export class ApiService {
     return this.http.get(`${this.baseUrl}/buildings/${buildingId}/cases-summary`);
   }
 
-  casesAll(buildingId) {
-    return this.http.get(`${this.baseUrl}/buildings/${buildingId}/cases`);
+  casesAll(buildingId, page) {
+    console.log(page);
+    return this.http.get(`${this.baseUrl}/buildings/${buildingId}/cases?page=${page}`);
   }
 
   workOrders(buildingId) {

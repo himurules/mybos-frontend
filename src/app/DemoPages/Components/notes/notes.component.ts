@@ -8,6 +8,7 @@ import {ApiService} from '../../../Services/api.service';
 export class NotesComponent implements OnInit {
   public notes = [];
   public error = null;
+  public showSpinner = true;
   constructor(private apiService: ApiService) {
   }
 
@@ -19,6 +20,7 @@ export class NotesComponent implements OnInit {
 
   handleResponse(data) {
     this.notes = data.data;
+    this.showSpinner = false;
   }
 
 }

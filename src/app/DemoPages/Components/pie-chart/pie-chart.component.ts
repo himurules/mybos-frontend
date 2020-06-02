@@ -3,7 +3,6 @@ import { ChartType, ChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import {ApiService} from '../../../Services/api.service';
-import {element} from "protractor";
 
 @Component({
   selector: 'app-pie-chart',
@@ -37,7 +36,7 @@ export class PieChartComponent implements OnInit {
     },
   ];
   public error = null;
-
+  public showSpinner = true;
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
@@ -52,6 +51,7 @@ export class PieChartComponent implements OnInit {
       this.pieChartData.push(element.total);
       this.pieChartColors[0].backgroundColor.push(this.random_rgba());
     }
+    this.showSpinner = false;
   }
 
   // events

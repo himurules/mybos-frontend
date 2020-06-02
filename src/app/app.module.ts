@@ -68,6 +68,8 @@ import {ImportantNumbersComponent} from './DemoPages/Components/important-number
 import {TokenInterceptor} from './Services/token.interceptor';
 import {Autherrorhandler} from './Services/autherrorhandler';
 import {CasesComponent} from "./DemoPages/Components/cases/cases.component";
+import {SpinnerComponent} from "./DemoPages/Components/spinner/spinner.component";
+import { ReplaceSpacePipe } from './Pipes/replace-space.pipe';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -118,6 +120,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ActionItemsComponent,
     ImportantNumbersComponent,
     CasesComponent,
+    SpinnerComponent,
+    ReplaceSpacePipe
   ],
   imports: [
     BrowserModule,
